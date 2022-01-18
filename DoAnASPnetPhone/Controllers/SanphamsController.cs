@@ -49,8 +49,8 @@ namespace DoAnASPnetPhone.Controllers
         // GET: Sanphams/Create
         public IActionResult Create()
         {
-            ViewData["HangsanxuatId"] = new SelectList(_context.Hangsanxuat, "Id", "Id");
-            ViewData["HedieuhanhId"] = new SelectList(_context.Hedieuhanh, "Id", "Id");
+            ViewData["HangsanxuatId"] = new SelectList(_context.Hangsanxuat, "Id", "Tenhang");
+            ViewData["HedieuhanhId"] = new SelectList(_context.Hedieuhanh, "Id", "Tenhdh");
             return View();
         }
 
@@ -67,8 +67,8 @@ namespace DoAnASPnetPhone.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["HangsanxuatId"] = new SelectList(_context.Hangsanxuat, "Id", "Id", sanpham.HangsanxuatId);
-            ViewData["HedieuhanhId"] = new SelectList(_context.Hedieuhanh, "Id", "Id", sanpham.HedieuhanhId);
+            ViewData["HangsanxuatId"] = new SelectList(_context.Hangsanxuat, "Id", "Tenhang", sanpham.HangsanxuatId);
+            ViewData["HedieuhanhId"] = new SelectList(_context.Hedieuhanh, "Id", "Tenhdh", sanpham.HedieuhanhId);
             return View(sanpham);
         }
 
@@ -85,8 +85,8 @@ namespace DoAnASPnetPhone.Controllers
             {
                 return NotFound();
             }
-            ViewData["HangsanxuatId"] = new SelectList(_context.Hangsanxuat, "Id", "Id", sanpham.HangsanxuatId);
-            ViewData["HedieuhanhId"] = new SelectList(_context.Hedieuhanh, "Id", "Id", sanpham.HedieuhanhId);
+            ViewData["HangsanxuatId"] = new SelectList(_context.Hangsanxuat, "Id", "Tenhang", sanpham.HangsanxuatId);
+            ViewData["HedieuhanhId"] = new SelectList(_context.Hedieuhanh, "Id", "Tenhdh", sanpham.HedieuhanhId);
             return View(sanpham);
         }
 
@@ -122,8 +122,8 @@ namespace DoAnASPnetPhone.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["HangsanxuatId"] = new SelectList(_context.Hangsanxuat, "Id", "Id", sanpham.HangsanxuatId);
-            ViewData["HedieuhanhId"] = new SelectList(_context.Hedieuhanh, "Id", "Id", sanpham.HedieuhanhId);
+            ViewData["HangsanxuatId"] = new SelectList(_context.Hangsanxuat, "Id", "Tenhang", sanpham.HangsanxuatId);
+            ViewData["HedieuhanhId"] = new SelectList(_context.Hedieuhanh, "Id", "Tenhdh", sanpham.HedieuhanhId);
             return View(sanpham);
         }
 

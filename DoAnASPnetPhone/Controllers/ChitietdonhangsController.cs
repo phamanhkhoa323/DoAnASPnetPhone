@@ -49,8 +49,8 @@ namespace DoAnASPnetPhone.Controllers
         // GET: Chitietdonhangs/Create
         public IActionResult Create()
         {
-            ViewData["DonhangId"] = new SelectList(_context.Donhang, "Id", "Id");
-            ViewData["SanphamId"] = new SelectList(_context.Sanpham, "Id", "Id");
+            ViewData["DonhangId"] = new SelectList(_context.Donhang, "Id", "Madon");
+            ViewData["SanphamId"] = new SelectList(_context.Sanpham, "Id", "Tensp");
             return View();
         }
 
@@ -67,8 +67,8 @@ namespace DoAnASPnetPhone.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DonhangId"] = new SelectList(_context.Donhang, "Id", "Id", chitietdonhang.DonhangId);
-            ViewData["SanphamId"] = new SelectList(_context.Sanpham, "Id", "Id", chitietdonhang.SanphamId);
+            ViewData["DonhangId"] = new SelectList(_context.Donhang, "Id", "Madon", chitietdonhang.DonhangId);
+            ViewData["SanphamId"] = new SelectList(_context.Sanpham, "Id", "Tensp", chitietdonhang.SanphamId);
             return View(chitietdonhang);
         }
 
@@ -85,8 +85,8 @@ namespace DoAnASPnetPhone.Controllers
             {
                 return NotFound();
             }
-            ViewData["DonhangId"] = new SelectList(_context.Donhang, "Id", "Id", chitietdonhang.DonhangId);
-            ViewData["SanphamId"] = new SelectList(_context.Sanpham, "Id", "Id", chitietdonhang.SanphamId);
+            ViewData["DonhangId"] = new SelectList(_context.Donhang, "Id", "Madon", chitietdonhang.DonhangId);
+            ViewData["SanphamId"] = new SelectList(_context.Sanpham, "Id", "Tensp", chitietdonhang.SanphamId);
             return View(chitietdonhang);
         }
 
@@ -122,8 +122,8 @@ namespace DoAnASPnetPhone.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DonhangId"] = new SelectList(_context.Donhang, "Id", "Id", chitietdonhang.DonhangId);
-            ViewData["SanphamId"] = new SelectList(_context.Sanpham, "Id", "Id", chitietdonhang.SanphamId);
+            ViewData["DonhangId"] = new SelectList(_context.Donhang, "Id", "Madon", chitietdonhang.DonhangId);
+            ViewData["SanphamId"] = new SelectList(_context.Sanpham, "Id", "Tensp", chitietdonhang.SanphamId);
             return View(chitietdonhang);
         }
 

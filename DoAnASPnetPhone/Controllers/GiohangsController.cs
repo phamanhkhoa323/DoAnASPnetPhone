@@ -50,7 +50,7 @@ namespace DoAnASPnetPhone.Controllers
         public IActionResult Create()
         {
             ViewData["NguoidungId"] = new SelectList(_context.Nguoidung, "Id", "Email");
-            ViewData["SanphamId"] = new SelectList(_context.Sanpham, "Id", "Id");
+            ViewData["SanphamId"] = new SelectList(_context.Sanpham, "Id", "Tensp");
             return View();
         }
 
@@ -68,7 +68,7 @@ namespace DoAnASPnetPhone.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["NguoidungId"] = new SelectList(_context.Nguoidung, "Id", "Email", giohang.NguoidungId);
-            ViewData["SanphamId"] = new SelectList(_context.Sanpham, "Id", "Id", giohang.SanphamId);
+            ViewData["SanphamId"] = new SelectList(_context.Sanpham, "Id", "Tensp", giohang.SanphamId);
             return View(giohang);
         }
 
@@ -86,7 +86,7 @@ namespace DoAnASPnetPhone.Controllers
                 return NotFound();
             }
             ViewData["NguoidungId"] = new SelectList(_context.Nguoidung, "Id", "Email", giohang.NguoidungId);
-            ViewData["SanphamId"] = new SelectList(_context.Sanpham, "Id", "Id", giohang.SanphamId);
+            ViewData["SanphamId"] = new SelectList(_context.Sanpham, "Id", "Tensp", giohang.SanphamId);
             return View(giohang);
         }
 
@@ -123,7 +123,7 @@ namespace DoAnASPnetPhone.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["NguoidungId"] = new SelectList(_context.Nguoidung, "Id", "Email", giohang.NguoidungId);
-            ViewData["SanphamId"] = new SelectList(_context.Sanpham, "Id", "Id", giohang.SanphamId);
+            ViewData["SanphamId"] = new SelectList(_context.Sanpham, "Id", "Tensp", giohang.SanphamId);
             return View(giohang);
         }
 
