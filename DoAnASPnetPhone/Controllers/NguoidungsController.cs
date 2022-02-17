@@ -178,6 +178,8 @@ namespace DoAnASPnetPhone.Controllers
                 //tạo session
                 HttpContext.Session.SetInt32("NguoidungId", acc.Id);
                 HttpContext.Session.SetString("NguoidungEmail", acc.Email);
+                ViewData["NguoidungEmail"] = Email;
+                //ViewBag.NguoidungEmail= Email;
                 return RedirectToAction("Index", "Home");
             }
             else

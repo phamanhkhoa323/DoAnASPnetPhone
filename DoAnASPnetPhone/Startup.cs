@@ -10,7 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using DoAnASPnetPhone.Data;
-
+using Microsoft.AspNetCore.Http;
 namespace DoAnASPnetPhone
 {
     public class Startup
@@ -30,6 +30,7 @@ namespace DoAnASPnetPhone
             {
                 ses.IdleTimeout = new TimeSpan(7, 0, 0, 0);
             });
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddControllersWithViews();
 
             services.AddDbContext<DoAnASPnetPhoneContext>(options =>
