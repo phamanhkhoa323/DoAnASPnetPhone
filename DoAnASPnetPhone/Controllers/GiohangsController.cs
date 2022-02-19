@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DoAnASPnetPhone.Data;
 using DoAnASPnetPhone.Models;
+using Microsoft.AspNetCore.Http;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace DoAnASPnetPhone.Controllers
 {
@@ -161,6 +164,38 @@ namespace DoAnASPnetPhone.Controllers
         private bool GiohangExists(int id)
         {
             return _context.Giohang.Any(e => e.Id == id);
+        }
+        //add cart
+        public IActionResult Add(int id)
+        {
+            return Add(id, 1);
+        }
+        [HttpPost]
+        public IActionResult Add(int sanphamid, int quantity)
+        {
+            string username = HttpContext.Session.GetString("NguoidungEmail");
+            int accountid = (int)HttpContext.Session.GetInt32("NguoidungId");
+            Giohang cart = _context.Giohang.FirstOrDefault(c => c.NguoidungId == accountid && c.SanphamId ==sanphamid);
+            if (cart == null)
+            {             
+                {
+                    cart = new Giohang();
+                    cart.NguoidungId = accountid;
+                    cart.SanphamId = sanphamid;
+                    cart.SoLuongMua = quantity;
+                    _context.Giohang.Add(cart);
+                }
+                {
+                    ViewBag.ErrorCartMessenge = "So luong khong du";
+                }
+
+            }
+            else
+            {
+                cart.SoLuongMua += quantity;
+            }
+            _context.SaveChanges();
+            return RedirectToAction("index");
         }
     }
 }

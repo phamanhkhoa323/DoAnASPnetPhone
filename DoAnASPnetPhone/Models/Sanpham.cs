@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations.Schema;
 namespace DoAnASPnetPhone.Models
 {
     public class Sanpham
@@ -26,6 +28,9 @@ namespace DoAnASPnetPhone.Models
         public string Mota { get; set; }
         [DisplayName("Ảnh minh họa")]
         public string Anhbia { get; set; }
+        [NotMapped]
+        public IFormFile ImageFile { get; set; }
+
         public int HangsanxuatId { get; set; }
         [DisplayName("Mã hãng sản xuất")]
         public Hangsanxuat Hangsanxuat { get; set; }

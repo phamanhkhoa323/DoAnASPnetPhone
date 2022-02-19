@@ -7,16 +7,19 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using DoAnASPnetPhone.Data;
 
 namespace DoAnASPnetPhone.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly DoAnASPnetPhoneContext _context;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, DoAnASPnetPhoneContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         
@@ -42,6 +45,11 @@ namespace DoAnASPnetPhone.Controllers
                 ViewBag.AccountUsername = HttpContext.Session.GetString("NguoidungEmail");
             }
             return View();
+        }
+        public IActionResult Giohang()
+        {
+            List <Giohang> cart = _context.Giohang.ToList();
+            return View(cart);
         }
     }
 }

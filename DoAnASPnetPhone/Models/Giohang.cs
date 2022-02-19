@@ -26,5 +26,6 @@ namespace DoAnASPnetPhone.Models
         [Required(ErrorMessage = "{0} không được bỏ trống")]
         [DefaultValue(1)]
         public int SoLuongMua { get; set; } = 1;
+
     }
 }

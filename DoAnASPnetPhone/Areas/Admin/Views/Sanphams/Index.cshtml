@@ -1,0 +1,86 @@
+﻿@model IEnumerable<DoAnASPnetPhone.Models.Sanpham>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Quản lí sản phẩm</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+@using (Html.BeginForm("Index","Product",FormMethod.Get))
+{
+   <p>
+       Tìm tên sản phẩm: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+       <input type="submit" value="Tìm kiếm"/>
+   </p>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Masp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tensp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Giatien)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Soluong)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mota)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Anhbia)   
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hangsanxuat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hedieuhanh)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Masp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tensp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Giatien)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Soluong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mota)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Anhbia)*@
+                <img src="~/assets/pages/img/sanpham/@Html.DisplayFor(modelItem => item.Anhbia)" width="100" height="100" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hangsanxuat.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hedieuhanh.Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

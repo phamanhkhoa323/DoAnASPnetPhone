@@ -1,112 +1,208 @@
-﻿<div class="container px-3 my-5 clearfix">
-    <!-- Shopping cart table -->
-    <div class="card">
-        <div class="card-header">
-            <h2>Shopping Cart</h2>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered m-0">
+﻿@model IEnumerable<DoAnASPnetPhone.Models.Giohang>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!--  demo.smartaddons.com/templates/html/emarket/cart.html by AkrAm, Sat, 20 Apr 2019 20:00:20 GMT -->
+
+<head>
+
+    <!-- Basic page needs
+    ============================================ -->
+    <title>Bán điện thoại</title>
+    <meta charset="utf-8">
+    <meta name="keywords"
+          content="html5 template, best html5 template, best html template, html5 basic template, multipurpose html5 template, multipurpose html template, creative html templates, creative html5 templates" />
+    <meta name="description"
+          content="eMarket is a powerful Multi-purpose HTML5 Template with clean and user friendly design. It is definite a great starter for any eCommerce web project." />
+    <meta name="author" content="Magentech">
+    <meta name="robots" content="index, follow" />
+
+    <!-- Mobile specific metas
+    ============================================ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Favicon
+    ============================================ -->
+
+    <link rel="shortcut icon" type="image/png" href="ico/favicon-16x16.png" />
+
+
+    <!-- Libs CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/css/bootstrap/css/bootstrap.min.css">
+    <link href="~/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/js/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="~/js/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="~/css/themecss/lib.css" rel="stylesheet">
+    <link href="~/js/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+    <link href="~/js/minicolors/miniColors.css" rel="stylesheet">
+
+    <!-- Theme CSS
+    ============================================ -->
+    <link href="~/css/themecss/so_searchpro.css" rel="stylesheet">
+    <link href="~/css/themecss/so_megamenu.css" rel="stylesheet">
+    <link href="~/css/themecss/so-categories.css" rel="stylesheet">
+    <link href="~/css/themecss/so-listing-tabs.css" rel="stylesheet">
+    <link href="~/css/themecss/so-newletter-popup.css" rel="stylesheet">
+
+    <link href="~/css/footer/footer1.css" rel="stylesheet">
+    <link href="~/css/header/header1.css" rel="stylesheet">
+    <link id="color_scheme" href="~/css/theme.css" rel="stylesheet">
+    <link href="~/css/responsive.css" rel="stylesheet">
+
+    <!-- Google web fonts
+    ============================================ -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700' rel='stylesheet'
+          type='text/css'>
+    <style type="text/css">
+        body {
+            font-family: 'Roboto', sans-serif
+        }
+    </style>
+
+</head>
+
+<body class="res layout-1">
+
+    <div id="wrapper" class="wrapper-fluid banners-effect-5">
+
+
+        <!-- Header Container  -->
+        <!-- //Main Container -->
+        <div id="content" class="col-sm-12">
+            <h2 class="title">Shopping Cart</h2>
+            <div class="table-responsive form-group">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <!-- Set columns width -->
-                            <th class="text-center py-3 px-4" style="min-width: 400px;">Product Name &amp; Details</th>
-                            <th class="text-right py-3 px-4" style="width: 100px;">Price</th>
-                            <th class="text-center py-3 px-4" style="width: 120px;">Quantity</th>
-                            <th class="text-right py-3 px-4" style="width: 100px;">Total</th>
-                            <th class="text-center align-middle py-3 px-0" style="width: 40px;"><a href="#" class="shop-tooltip float-none text-light" title="" data-original-title="Clear cart"><i class="ino ion-md-trash"></i></a></th>
+                            <td class="text-center">Hình ảnh</td>
+                            <td class="text-left">Tên sản phẩm</td>
+                            @*<td class="text-left">Model</td>*@
+                            <td class="text-left">Số lượng</td>
+                            <td class="text-right">Đơn giá</td>
+                            <td class="text-right">Tổng cộng</td>
                         </tr>
                     </thead>
                     <tbody>
-
+                        @foreach (Giohang cart in Model) {
                         <tr>
-                            <td class="p-4">
-                                <div class="media align-items-center">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="d-block ui-w-40 ui-bordered mr-4" alt="">
-                                    <div class="media-body">
-                                        <a href="#" class="d-block text-dark">Product 1</a>
-                                        <small>
-                                            <span class="text-muted">Color:</span>
-                                            <span class="ui-product-color ui-product-color-sm align-text-bottom" style="background:#e81e2c;"></span> &nbsp;
-                                            <span class="text-muted">Size: </span> EU 37 &nbsp;
-                                            <span class="text-muted">Ships from: </span> China
-                                        </small>
-                                    </div>
+                            <td class="text-center">
+                                <a href="product.html">
+                                    <img width="70px"
+                                         src="~/image/catalog/demo/product/funiture/8.jpg"
+                                         alt="~/Aspire Ultrabook Laptop" title="Aspire Ultrabook Laptop"
+                                         class="img-thumbnail" />
+                                </a>
+                            </td>
+                            <td class="text-left">
+                                <a href="product.html">@cart.SanphamId</a><br />
+                            </td>
+                            @*<td class="text-left">Pt 001</td>*@
+                            <td class="text-left" width="200px">
+                                <div class="input-group btn-block quantity">
+                                    <input type="text" name="quantity" value="1" size="1"
+                                           class="form-control" />
+                                    <span class="input-group-btn">
+                                        <button type="submit" data-toggle="tooltip" title="Update"
+                                                class="btn btn-primary">
+                                            <i class="fa fa-clone"></i>
+                                        </button>
+                                        <button type="button" data-toggle="tooltip" title="Remove"
+                                                class="btn btn-danger" onClick="">
+                                            <i class="fa fa-times-circle"></i>
+                                        </button>
+                                    </span>
                                 </div>
                             </td>
-                            <td class="text-right font-weight-semibold align-middle p-4">$57.55</td>
-                            <td class="align-middle p-4"><input type="text" class="form-control text-center" value="2"></td>
-                            <td class="text-right font-weight-semibold align-middle p-4">$115.1</td>
-                            <td class="text-center align-middle px-0"><a href="#" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">×</a></td>
+                            <td class="text-right">$120.00</td>
+                            <td class="text-right">$120.00</td>
                         </tr>
-
-                        <tr>
-                            <td class="p-4">
-                                <div class="media align-items-center">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar6.png" class="d-block ui-w-40 ui-bordered mr-4" alt="">
-                                    <div class="media-body">
-                                        <a href="#" class="d-block text-dark">Product 2</a>
-                                        <small>
-                                            <span class="text-muted">Color:</span>
-                                            <span class="ui-product-color ui-product-color-sm align-text-bottom" style="background:#000;"></span> &nbsp;
-                                            <span class="text-muted">Storage: </span> 32GB &nbsp;
-                                            <span class="text-muted">Warranty: </span> Standard - 1 year &nbsp;
-                                            <span class="text-muted">Ships from: </span> China
-                                        </small>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="text-right font-weight-semibold align-middle p-4">$1049.00</td>
-                            <td class="align-middle p-4"><input type="text" class="form-control text-center" value="1"></td>
-                            <td class="text-right font-weight-semibold align-middle p-4">$1049.00</td>
-                            <td class="text-center align-middle px-0"><a href="#" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">×</a></td>
-                        </tr>
-
-                        <tr>
-                            <td class="p-4">
-                                <div class="media align-items-center">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="d-block ui-w-40 ui-bordered mr-4" alt="">
-                                    <div class="media-body">
-                                        <a href="#" class="d-block text-dark">Product 3</a>
-                                        <small>
-                                            <span class="text-muted">Ships from: </span> Germany
-                                        </small>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="text-right font-weight-semibold align-middle p-4">$20.55</td>
-                            <td class="align-middle p-4"><input type="text" class="form-control text-center" value="1"></td>
-                            <td class="text-right font-weight-semibold align-middle p-4">$20.55</td>
-                            <td class="text-center align-middle px-0"><a href="#" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">×</a></td>
-                        </tr>
-
+                        }
                     </tbody>
                 </table>
             </div>
-            <!-- / Shopping cart table -->
 
-            <div class="d-flex flex-wrap justify-content-between align-items-center pb-4">
-                <div class="mt-4">
-                    <label class="text-muted font-weight-normal">Promocode</label>
-                    <input type="text" placeholder="ABC" class="form-control">
-                </div>
-                <div class="d-flex">
-                    <div class="text-right mt-4 mr-5">
-                        <label class="text-muted font-weight-normal m-0">Discount</label>
-                        <div class="text-large"><strong>$20</strong></div>
-                    </div>
-                    <div class="text-right mt-4">
-                        <label class="text-muted font-weight-normal m-0">Total price</label>
-                        <div class="text-large"><strong>$1164.65</strong></div>
-                    </div>
+
+
+            <div class="row">
+                <div class="col-sm-4 col-sm-offset-8">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="text-right">
+                                    <strong>Sub-Total:</strong>
+                                </td>
+                                <td class="text-right">$168.71</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right">
+                                    <strong>Flat Shipping Rate:</strong>
+                                </td>
+                                <td class="text-right">$4.69</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right">
+                                    <strong>Eco Tax (-2.00):</strong>
+                                </td>
+                                <td class="text-right">$5.62</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right">
+                                    <strong>VAT (20%):</strong>
+                                </td>
+                                <td class="text-right">$34.68</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right">
+                                    <strong>Total:</strong>
+                                </td>
+                                <td class="text-right">$213.70</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
-            <div class="float-right">
-                <button type="button" class="btn btn-lg btn-default md-btn-flat mt-2 mr-3">Back to shopping</button>
-                <button type="button" class="btn btn-lg btn-primary mt-2">Checkout</button>
-            </div>
+            <div class="buttons">
 
+                <div class="pull-right"><a href="checkout.html" class="btn btn-primary">Checkout</a></div>
+            </div>
         </div>
+
+        <!-- Footer Container -->
+        <!-- Footer Top Container -->
+        <!-- /Footer Top Container -->
+        <!-- //end Footer Container -->
+
     </div>
-</div>
+
+
+    <!-- Include Libs & Plugins
+    ============================================ -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="~/js/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="~/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/js/owl-carousel/owl.carousel.js"></script>
+    <script type="text/javascript" src="~/js/themejs/libs.js"></script>
+    <script type="text/javascript" src="~/js/unveil/jquery.unveil.js"></script>
+    <script type="text/javascript" src="~/js/countdown/jquery.countdown.min.js"></script>
+    <script type="text/javascript" src="~/js/dcjqaccordion/jquery.dcjqaccordion.2.8.min.js"></script>
+    <script type="text/javascript" src="~/js/datetimepicker/moment.js"></script>
+    <script type="text/javascript" src="~/js/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/js/jquery-ui/jquery-ui.min.js"></script>
+
+
+    <!-- Theme files
+    ============================================ -->
+
+
+    <script type="text/javascript" src="~/js/themejs/so_megamenu.js"></script>
+    <script type="text/javascript" src="~/js/themejs/addtocart.js"></script>
+    <script type="text/javascript" src="~/js/themejs/application.js"></script>
+
+</body>
+
+<!--  demo.smartaddons.com/templates/html/emarket/cart.html by AkrAm, Sat, 20 Apr 2019 20:00:20 GMT -->
+
+</html>

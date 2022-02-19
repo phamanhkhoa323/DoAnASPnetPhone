@@ -1,0 +1,52 @@
+﻿@model IEnumerable<DoAnASPnetPhone.Models.Giohang>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    decimal total = 0;
+    int stt = 1;
+}
+
+                    <h4>Giỏ hàng </h4>
+                    <table class="table">
+                        <tr>
+                            <th>STT</th>
+                            <th>Sản phẩm</th>
+                            <th>Giá</th>
+                            <th>Số lượng</th>
+                            <th>Thành tiền</th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (Giohang ca in Model)
+                        {
+                            int sl;
+                            sl = ca.SoLuongMua;
+                            int thanhtien = ca.SoLuongMua * ca.Sanpham.Giatien;
+                            <tr>
+                                <td>@(stt++)</td>
+                                <td>@ca.Sanpham.Tensp</td>
+                                <td>@(ca.Sanpham.Giatien.ToString("n0"))</td>
+                                <td><input asp-for="@ca.SoLuongMua" name="soluong" asp-controller="UpdateCart" value="@sl" /></td>
+                                <td>@thanhtien</td>
+                                <td>
+                                    <button class="btn btn-success updatecartitem" asp-action="Update"
+                                            asp-route-productid="@ca.Sanpham.Id" asp-route-quantity="@sl">
+                                        Cập nhật
+                                    </button>
+                                    <a asp-route="RemoveCart" asp-route-productid="@ca.Sanpham.Id"
+                                       class="btn btn-danger">Xóa</a>
+                                </td>
+                            </tr>
+                        }
+
+                        <tr>
+                            <td colspan="4" class="text-right">Tổng tiền</td>
+                            <td>@ViewBag.Total</td>
+                            <td></td>
+
+                        </tr>
+
+                    </table>
+                    <a asp-controller="Carts" asp-action="Pay" class="btn btn-danger">Thanh toán</a>
+                    <hr />

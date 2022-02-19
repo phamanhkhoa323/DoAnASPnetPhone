@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoAnASPnetPhone.Migrations
 {
     [DbContext(typeof(DoAnASPnetPhoneContext))]
-    [Migration("20220118032346_FulDB")]
-    partial class FulDB
+    [Migration("20220216170935_FullDB")]
+    partial class FullDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

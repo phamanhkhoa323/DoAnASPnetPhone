@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DoAnASPnetPhone.Migrations
 {
-    public partial class FulDB : Migration
+    public partial class FullDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
