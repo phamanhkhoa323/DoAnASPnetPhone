@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using DoAnASPnetPhone.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace DoAnASPnetPhone.Controllers
 {
@@ -44,12 +45,23 @@ namespace DoAnASPnetPhone.Controllers
             {
                 ViewBag.AccountUsername = HttpContext.Session.GetString("NguoidungEmail");
             }
-            return View();
+            List<Sanpham> sp = _context.Sanpham.ToList();
+            return View(sp);
         }
         public IActionResult Giohang()
         {
-            List <Giohang> cart = _context.Giohang.ToList();
+            int accountid = 0;
+            if(HttpContext.Session.GetInt32("NguoidungId") != null )
+            {
+                accountid = (int)HttpContext.Session.GetInt32("NguoidungId"); 
+            }
+            var cart = _context.Giohang.Include(g => g.Nguoidung).Include(g => g.Sanpham).Where(c => c.NguoidungId == accountid).ToList();
             return View(cart);
+        }
+        public IActionResult SanPham()
+        {
+            List<Sanpham> sp = _context.Sanpham.ToList();
+            return View(sp);
         }
     }
 }

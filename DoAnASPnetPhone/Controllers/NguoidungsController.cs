@@ -167,7 +167,15 @@ namespace DoAnASPnetPhone.Controllers
         {
             Nguoidung acc = _context.Nguoidung.Where(a => a.Email == Email
                 && a.Matkhau == MatKhau).FirstOrDefault();
-            if (acc != null)
+            if (acc.PhanquyenId == 1)
+            {
+                HttpContext.Session.SetInt32("NguoidungId", acc.Id);
+                HttpContext.Session.SetString("NguoidungEmail", acc.Email);
+                ViewData["NguoidungEmail"] = Email;
+                return RedirectToAction("Index", "admin");
+
+            }
+            else if (acc != null)
             {
                 /*CookieOptions cookieOptions = new CookieOptions()
                 {
@@ -182,9 +190,9 @@ namespace DoAnASPnetPhone.Controllers
                 //ViewBag.NguoidungEmail= Email;
                 return RedirectToAction("Index", "Home");
             }
+             
             else
             {
-
                 return View();
             }
 

@@ -10,13 +10,14 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-@using (Html.BeginForm("Index","Product",FormMethod.Get))
+@*@using (Html.BeginForm("Index","Sanpham",FormMethod.Get))
 {
-   <p>
-       Tìm tên sản phẩm: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-       <input type="submit" value="Tìm kiếm"/>
-   </p>
-}
+
+    Tìm tên sản phẩm: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Tìm kiếm"/>
+    
+
+}*@
 <table class="table">
     <thead>
         <tr>
@@ -70,10 +71,10 @@
                 <img src="~/assets/pages/img/sanpham/@Html.DisplayFor(modelItem => item.Anhbia)" width="100" height="100" />
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Hangsanxuat.Id)
+                @Html.DisplayFor(modelItem => item.Hangsanxuat.Tenhang)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Hedieuhanh.Id)
+                @Html.DisplayFor(modelItem => item.Hedieuhanh.Tenhdh)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

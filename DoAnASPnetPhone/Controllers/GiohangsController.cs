@@ -25,7 +25,8 @@ namespace DoAnASPnetPhone.Controllers
         // GET: Giohangs
         public async Task<IActionResult> Index()
         {
-            var doAnASPnetPhoneContext = _context.Giohang.Include(g => g.Nguoidung).Include(g => g.Sanpham);
+            int accountid = (int)HttpContext.Session.GetInt32("NguoidungId");
+            var doAnASPnetPhoneContext = _context.Giohang.Include(g => g.Nguoidung).Include(g => g.Sanpham).Where(c => c.NguoidungId == accountid);
             return View(await doAnASPnetPhoneContext.ToListAsync());
         }
 
@@ -195,7 +196,30 @@ namespace DoAnASPnetPhone.Controllers
                 cart.SoLuongMua += quantity;
             }
             _context.SaveChanges();
-            return RedirectToAction("index");
+            return Redirect("~/Home/index");
+        }
+        //delete cart
+        public IActionResult Delete1(int id)
+        {
+            return Delete(id, 1);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(int id, int status)
+        {
+            var cart = _context.Giohang.FirstOrDefault(c => c.Id == id);
+
+            _context.Giohang.Remove(cart);
+
+            _context.SaveChangesAsync();
+            return Redirect("~/Home/GioHang");
+            //if(.phanquyen.id== 1)
+            //{
+
+            //}else
+            //{
+
+            //}
         }
     }
 }
