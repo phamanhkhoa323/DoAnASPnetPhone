@@ -29,7 +29,7 @@
                 <a href="~/contact.html">Contact</a>
             </div>
             <span style="font-size:30px;cursor:pointer; color: #fff;" onclick="openNav()"><img src="~/images/toggle-icon.png"></span>
-            <a class="navbar-brand" href="~/index.html"><img src="~/images/logo.png"></a></a>
+            <a class="navbar-brand" href="~/index.html"><img src="~/images/logo.png"></a>
             <form class="form-inline ">
                 <div class="login_text">
                     <ul>
@@ -38,7 +38,7 @@
                             <a asp-controller="Nguoidungs" asp-action="@a" style="color: #333">@a</a>
                         </li>
                         <li><a href="#"><img src="~/images/user-icon.png"></a></li>
-                        <li><a href="#"><img src="~/images/trolly-icon.png"></a></li>
+                        <li><a  asp-controller="Home" asp-action="Giohang"><img src="~/images/trolly-icon.png"></a></li>
                         <li><a href="#"><img src="~/images/search-icon.png"></a></li>
                     </ul>
                 </div>
