@@ -199,11 +199,11 @@ namespace DoAnASPnetPhone.Controllers
         }
         public IActionResult Logout()
         {
-            HttpContext.Response.Cookies.Append("NguoidungId", "",
-                new CookieOptions { Expires = DateTime.Now.AddDays(-1) });
+            //HttpContext.Response.Cookies.Append("NguoidungId", "",
+            //    new CookieOptions { Expires = DateTime.Now.AddDays(-1) });
 
-            HttpContext.Response.Cookies.Append("NguoidungEmail", "",
-                new CookieOptions { Expires = DateTime.Now.AddDays(-1) });
+            //HttpContext.Response.Cookies.Append("NguoidungEmail", "",
+            //    new CookieOptions { Expires = DateTime.Now.AddDays(-1) });
             // Hủy Session
             HttpContext.Session.Remove("NguoidungId");
             //Hủy toàn bộ Session

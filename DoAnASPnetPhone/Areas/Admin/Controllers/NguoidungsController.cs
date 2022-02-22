@@ -22,7 +22,7 @@ namespace DoAnASPnetPhone.Areas.Admin.Controllers
 
         // GET: Admin/Nguoidungs
         public async Task<IActionResult> Index()
-        {
+        {   
             var doAnASPnetPhoneContext = _context.Nguoidung.Include(n => n.Phanquyen);
             return View(await doAnASPnetPhoneContext.ToListAsync());
         }
@@ -49,7 +49,7 @@ namespace DoAnASPnetPhone.Areas.Admin.Controllers
         // GET: Admin/Nguoidungs/Create
         public IActionResult Create()
         {
-            ViewData["PhanquyenId"] = new SelectList(_context.Phanquyen, "Id", "Id");
+            ViewData["PhanquyenId"] = new SelectList(_context.Phanquyen, "Id", "Tenquyen");
             return View();
         }
 
@@ -66,7 +66,7 @@ namespace DoAnASPnetPhone.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PhanquyenId"] = new SelectList(_context.Phanquyen, "Id", "Id", nguoidung.PhanquyenId);
+            ViewData["PhanquyenId"] = new SelectList(_context.Phanquyen, "Id", "Tenquyen", nguoidung.PhanquyenId);
             return View(nguoidung);
         }
 
@@ -83,7 +83,7 @@ namespace DoAnASPnetPhone.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["PhanquyenId"] = new SelectList(_context.Phanquyen, "Id", "Id", nguoidung.PhanquyenId);
+            ViewData["PhanquyenId"] = new SelectList(_context.Phanquyen, "Id", "Tenquyen", nguoidung.PhanquyenId);
             return View(nguoidung);
         }
 
@@ -119,7 +119,7 @@ namespace DoAnASPnetPhone.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PhanquyenId"] = new SelectList(_context.Phanquyen, "Id", "Id", nguoidung.PhanquyenId);
+            ViewData["PhanquyenId"] = new SelectList(_context.Phanquyen, "Id", "Tenquyen", nguoidung.PhanquyenId);
             return View(nguoidung);
         }
 

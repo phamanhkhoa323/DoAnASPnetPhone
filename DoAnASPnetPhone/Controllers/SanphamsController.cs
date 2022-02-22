@@ -7,16 +7,21 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DoAnASPnetPhone.Data;
 using DoAnASPnetPhone.Models;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace DoAnASPnetPhone.Controllers
 {
     public class SanphamsController : Controller
     {
         private readonly DoAnASPnetPhoneContext _context;
+        private readonly IWebHostEnvironment _webHostEnvironment;
+       
 
-        public SanphamsController(DoAnASPnetPhoneContext context)
+        public SanphamsController(DoAnASPnetPhoneContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: Sanphams
@@ -65,7 +70,21 @@ namespace DoAnASPnetPhone.Controllers
             {
                 _context.Add(sanpham);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (sanpham.ImageFile != null)
+                {
+                    var filename = sanpham.Id.ToString() + Path.GetExtension(sanpham.ImageFile.FileName);
+                    var uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, "img", "product");
+                    var filePath = Path.Combine(uploadPath, filename);
+                    using (FileStream fs = System.IO.File.Create(filePath))
+                    {
+                        sanpham.ImageFile.CopyTo(fs);
+                        fs.Flush();
+                    }
+                    sanpham.Anhbia = filename;
+                    _context.Sanpham.Update(sanpham);
+                    await _context.SaveChangesAsync();
+                }
+                //return RedirectToAction(nameof(Index));
             }
             ViewData["HangsanxuatId"] = new SelectList(_context.Hangsanxuat, "Id", "Tenhang", sanpham.HangsanxuatId);
             ViewData["HedieuhanhId"] = new SelectList(_context.Hedieuhanh, "Id", "Tenhdh", sanpham.HedieuhanhId);
