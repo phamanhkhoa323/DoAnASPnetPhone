@@ -1,18 +1,17 @@
 ﻿@model IEnumerable<DoAnASPnetPhone.Models.Sanpham>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Search";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
-
-<h1>Quản lí sản phẩm</h1>
-
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<h1>Quản lí sản phẩm</h1>
+
 <form asp-controller="Sanphams" asp-action="Search" method="get" class="form-inline mt-5 mt-md-0 d-none d-lg-block">
 
-
+ 
     Tên sản phầm:  <input class="form-control mr-sm-1 search" style="width:150px; height:10px " type="text" name="name" />
     Khoảng giá tiền: <input class="form-control mr-sm-1 search" style="width:80px; height:10px " type="number" name="minprice" />-
     <input class="form-control mr-sm-1 search" style="width:80px" type="number" name="maxprice" />

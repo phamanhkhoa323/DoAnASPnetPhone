@@ -181,46 +181,25 @@ namespace DoAnASPnetPhone.Areas.Admin.Controllers
         {
             return _context.Sanpham.Any(e => e.Id == id);
         }
-        public IActionResult Search( int? Masp, string tensp, int Giatien, int Soluong, string Mota, string Anhbia, int HangsanxuatId, int HedieuhanhId)
+        public IActionResult Search( string name, int? minprice, int? maxprice)
         {
 
-            List<Sanpham> sanpham = _context.Sanpham.ToList();
-            if (Masp != null)
+            var sanpham = _context.Sanpham.Include(pro => pro.Hangsanxuat).Include(pro => pro.Hedieuhanh).ToList();
+            if (name != null)
             {
-                sanpham= sanpham.Where(sp =>sp.Masp == Masp ).ToList();
+                sanpham = sanpham.Where(pro => pro.Tensp.Contains(name)).ToList();
             }
-            if (tensp == null)
+            if (minprice == null)
             {
-                sanpham = sanpham.Where(pro => pro.Tensp == tensp).ToList();
+                minprice = 0;
             }
-            if (Giatien != null)
+            if (maxprice == null)
             {
-                Giatien = 0;
+                maxprice = int.MaxValue;
             }
-            if (Soluong == null)
-            {
-                Soluong = int.MaxValue;
-            }
-            if (Mota != null)
-            {
-                sanpham = sanpham.Where(mt=>mt.Mota == Mota).ToList();
-            }
-            if (Anhbia  != null)
-            {
-                sanpham = sanpham.Where(ab => ab.Anhbia.Contains( Anhbia)).ToList();
-            }
-            if (HangsanxuatId != null)
-            {
-                sanpham = sanpham.Where(hsx => hsx.HangsanxuatId == HangsanxuatId).ToList();
-            }
-            if (HedieuhanhId != null)
-            {
-                sanpham = sanpham.Where(hdh => hdh.HedieuhanhId  == HedieuhanhId).ToList();
-            }
-            sanpham =sanpham.Where(prd => prd.Giatien>= Soluong).ToList();
-
-            return View();
-                //RedirectToAction(actionName: "Index", controllerName: "SanphamsController", sanpham);
+            sanpham = sanpham.Where(prd => prd.Giatien >= minprice && prd.Giatien <= maxprice).ToList();
+            return View(sanpham);
+            //RedirectToAction(actionName: "Index", controllerName: "SanphamsController", sanpham);
         }
     }
 }
